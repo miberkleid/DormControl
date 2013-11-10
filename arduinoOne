@@ -1,0 +1,164 @@
+//Arduino 1: Relay
+
+/* 
+ ***FINAL-DO NOT MODIFY***
+ DormControl_V3 ( Bluetooth PAIRING)
+ 11.08.2013
+ IR power otlet 
+ Turns on a set of outlets using an Android Device.
+ MIberco.
+ 
+ Need Andorid App and Bluethooth enabled arduino #2
+ */
+
+//#define IRpin 2
+int IRpin = 2;
+//LED Pins
+int redLed = 7;
+int blueLed = 6;
+int greenLed = 5;
+int yellowLed = 4;
+
+//Relay Status Pins
+int redState = 0;
+int blueState = 0;
+int greenState =0;
+int yellowState = 0;
+
+//Bluetooth interconencts
+
+int redTooth = 14;
+int blueTooth = 15;
+int greenTooth = 16;
+int yellowTooth = 17;
+
+//bluetooth values
+int redValue = 0;
+int blueValue = 0;
+int greenValue = 0;
+int yellowValue = 0;
+
+
+// the setup routine runs once when you press reset:
+void setup() { 
+  Serial.begin(9600); // set up Serial library at 9600 bps  
+  // initialize the digital pins.
+  pinMode(redLed, OUTPUT);
+  pinMode(blueLed, OUTPUT);
+  pinMode(greenLed, OUTPUT);
+  pinMode(yellowLed, OUTPUT);
+  pinMode (IRpin, INPUT);
+
+  // initialize the analog (now Digital) pins.
+  pinMode(redTooth, INPUT);
+  pinMode(blueTooth, INPUT);
+  pinMode(greenTooth, INPUT);
+  pinMode(yellowTooth, INPUT);
+
+
+  //MIberco. Start routine
+  /*
+  digitalWrite(redLed, HIGH);
+   delay(500);
+   digitalWrite(redLed, LOW);
+   delay(500);
+   digitalWrite(blueLed, HIGH);
+   delay(500);
+   digitalWrite(blueLed, LOW);
+   delay(500);
+   digitalWrite(greenLed, HIGH);
+   delay(500);
+   digitalWrite(greenLed, LOW);
+   delay(500);
+   digitalWrite(yellowLed, HIGH);
+   delay(500);
+   digitalWrite(yellowLed, LOW);
+   delay(500);
+   */
+
+  digitalWrite(redLed, HIGH);
+  digitalWrite(blueLed, HIGH);
+  digitalWrite(greenLed, HIGH);
+  digitalWrite(yellowLed, HIGH);
+  delay(500);
+  digitalWrite(redLed, LOW);
+  digitalWrite(blueLed, LOW);
+  digitalWrite(greenLed, LOW);
+  digitalWrite(yellowLed, LOW);
+  
+  digitalWrite(redTooth, LOW);
+  //digitalWrite(blueTooth, LOW);
+  //digitalWrite(greenTooth, LOW);
+  //digitalWrite(yellowTooth, LOW);
+  delay(500);
+}
+
+void loop() {
+
+  //red relay on
+  // code to see if everything works for serial
+  // debuggin
+  redValue = digitalRead(redTooth);
+  blueValue = digitalRead(blueTooth);
+  greenValue = digitalRead(greenTooth);
+  yellowValue = digitalRead(yellowTooth);
+  Serial.println("teeth are: ");
+   Serial.println("redValue");
+   Serial.println(redValue);
+   Serial.println("blueValue");
+   Serial.println(blueValue);
+   Serial.println("greenValue");
+   Serial.println(greenValue);
+   Serial.println("yellowValue");
+   Serial.println(yellowValue);
+   
+   //red relay on
+  if (redValue==1)
+  {
+    digitalWrite(redLed, HIGH);
+  }
+  //red relay off 
+  else
+  {
+    digitalWrite(redLed, LOW);
+  }
+  
+  
+  
+     //blue relay on
+  if (blueValue==1)
+  {
+    digitalWrite(blueLed, HIGH);
+  }
+  //blue relay off 
+  else
+  {
+    digitalWrite(blueLed, LOW);
+  }
+  
+  
+  
+         //green relay on
+  if (greenValue==1)
+  {
+    digitalWrite(greenLed, HIGH);
+  }
+  //green relay off 
+  else
+  {
+    digitalWrite(greenLed, LOW);
+  }
+  
+  
+  
+       //yellow relay on
+  if (yellowValue==1)
+  {
+    digitalWrite(yellowLed, HIGH);
+  }
+  //yellow relay off 
+  else
+  {
+    digitalWrite(yellowLed, LOW);
+  }
+  
